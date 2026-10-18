@@ -1,0 +1,6 @@
+flask
+flasgger
+flask_mysql
+flask_restful
+pyairtable
+gunicorn
