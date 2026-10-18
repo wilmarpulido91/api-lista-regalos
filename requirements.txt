@@ -1,6 +1,7 @@
-flask
+Flask
 flasgger
 flask_mysql
 flask_restful
+Flask-Cors==5.0.0
 pyairtable
 gunicorn
