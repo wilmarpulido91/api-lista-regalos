@@ -3,10 +3,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from flask import Flask, Blueprint
+from flask_cors import CORS
 from flaskext.mysql import MySQL
 from config import DevelopmentConfig, TestingConfig, ProductionConfig
 
 app = Flask(__name__)
+CORS(app)
 
 env = os.getenv("FLASK_ENV", "development")
 

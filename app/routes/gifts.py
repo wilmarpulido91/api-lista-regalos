@@ -17,9 +17,9 @@ def get_gifts():
             conection.commit()
             data = cursor.fetchall()
             fields = cursor.description
-            return jsonify({"code": 200, "users": functions.toJSON(fields, data)}), 200
+            return jsonify({"code": 200, "gifts": functions.toJSON(fields, data)}), 200
         else :
-            return jsonify({"code": 201, "message": "No hay usuarios en la base de datos"}), 201
+            return jsonify({"code": 201, "message": "No hay regalos en la base de datos"}), 201
     except conection.Error as error :
         return jsonify({"code": 500, "error": str(error)}), 500
     finally:
