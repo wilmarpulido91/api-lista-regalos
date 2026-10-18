@@ -1,6 +1,3 @@
-import bcrypt
-from flask import url_for
-
 # Funcion para formatear la respuesta en JSON #
 def toJSON(fields, data):
     column_list = []
