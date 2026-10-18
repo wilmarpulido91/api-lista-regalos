@@ -18,10 +18,11 @@ else:
     app.config.from_object(DevelopmentConfig)
 
 mysql = MySQL()
-app.config['MYSQL_DATABASE_HOST']='localhost'
-app.config['MYSQL_DATABASE_USER']='root'
-app.config['MYSQL_DATABASE_PASSWORD']=''
-app.config['MYSQL_DATABASE_DB']='lista_regalos'
+app.config['MYSQL_DATABASE_HOST'] = os.environ.get('DB_HOST')
+app.config['MYSQL_DATABASE_PORT'] = int(os.environ.get('DB_PORT', 3306))
+app.config['MYSQL_DATABASE_USER'] = os.environ.get('DB_USER')
+app.config['MYSQL_DATABASE_PASSWORD'] = os.environ.get('DB_PASSWORD')
+app.config['MYSQL_DATABASE_DB'] = os.environ.get('DB_NAME')
 
 mysql.init_app(app)
 
