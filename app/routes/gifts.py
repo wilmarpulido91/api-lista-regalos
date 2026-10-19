@@ -25,3 +25,23 @@ def get_gifts():
     finally:
         cursor.close()
         conection.close()
+
+# Actualizar un usuario por su ID #
+@api.route("/gift/<int:id_gift>", methods=["PUT"])
+def edit_gift(id_gift):
+    conection = mysql.connect()
+    cursor = conection.cursor()
+
+    block = 1
+
+    try :
+        sql = "UPDATE regalos SET bloqueado = %s WHERE idRegalo = %s"
+        cursor.execute(sql, (block, id_gift))
+        conection.commit()
+
+        return jsonify({"code": 200, "message": "Regalo actualizado con exito"}), 200
+    except conection.Error as error :
+        return jsonify({"code": 500, "error": str(error)}), 500
+    finally :
+        cursor.close()
+        conection.close()
