@@ -27,7 +27,7 @@ def get_guests():
         conection.close()
 
 # Actualizar un invitado por su ID #
-@api.route("/guests/<int:id_guest>", methods=["PUT"])
+@api.route("/guest/<int:id_guest>", methods=["PUT"])
 def edit_guest(id_guest):
     conection = mysql.connect()
     cursor = conection.cursor()
