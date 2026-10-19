@@ -5,7 +5,7 @@ from app.functions import functions
 
 # Obtener todos los invitados #
 @api.route("/guests", methods=["GET"])
-def get_gifts():
+def get_guests():
     conection = mysql.connect()
     cursor = conection.cursor()
 
@@ -27,8 +27,8 @@ def get_gifts():
         conection.close()
 
 # Actualizar un invitado por su ID #
-@api.route("/guests/<int:id_guests>", methods=["PUT"])
-def edit_guests(id_guests):
+@api.route("/guests/<int:id_guest>", methods=["PUT"])
+def edit_guest(id_guest):
     conection = mysql.connect()
     cursor = conection.cursor()
 
@@ -36,7 +36,7 @@ def edit_guests(id_guests):
 
     try :
         sql = "UPDATE asistentes SET bloqueado = %s WHERE idAsistente = %s"
-        cursor.execute(sql, (block, id_guests))
+        cursor.execute(sql, (block, id_guest))
         conection.commit()
 
         return jsonify({"code": 200, "message": "Invitado actualizado con exito"}), 200
