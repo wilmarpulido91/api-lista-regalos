@@ -3,7 +3,7 @@ from app import api
 from app import mysql
 from app.functions import functions
 
-# Obtener todos los usuarios #
+# Obtener todos los regalos #
 @api.route("/gifts", methods=["GET"])
 def get_gifts():
     conection = mysql.connect()
@@ -26,7 +26,7 @@ def get_gifts():
         cursor.close()
         conection.close()
 
-# Actualizar un usuario por su ID #
+# Actualizar un regalo por su ID #
 @api.route("/gift/<int:id_gift>", methods=["PUT"])
 def edit_gift(id_gift):
     conection = mysql.connect()

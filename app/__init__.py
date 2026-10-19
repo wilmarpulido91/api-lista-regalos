@@ -28,6 +28,6 @@ mysql.init_app(app)
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
-from app.routes import gifts
+from app.routes import gifts, guests
 
 app.register_blueprint(api)
