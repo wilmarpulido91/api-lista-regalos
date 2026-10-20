@@ -42,7 +42,7 @@ def get_user():
             conection.commit()
             data = cursor.fetchall()
             fields = cursor.description
-            return jsonify({"code": 200, "user": functions.toJSON(fields, data)}), 200
+            return jsonify({"code": 200, "guest": functions.toJSON(fields, data)}), 200
         else :
             return jsonify({"code": 201, "message": "No se encuentra el usuario en la base de datos"}), 201
     except conection.Error as error :
