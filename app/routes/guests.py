@@ -26,6 +26,31 @@ def get_guests():
         cursor.close()
         conection.close()
 
+# Obtener un usuario por su ID #
+@api.route("/guest", methods=["GET"])
+def get_user():
+    conection = mysql.connect()
+    cursor = conection.cursor()
+
+    guest_name = request.args.get('name')
+
+    try:
+        sql = "SELECT * FROM asistentes WHERE Nombre = %s"
+        cursor.execute(sql, (guest_name))
+
+        if cursor.execute(sql, (guest_name)) > 0 :
+            conection.commit()
+            data = cursor.fetchall()
+            fields = cursor.description
+            return jsonify({"code": 200, "user": functions.toJSON(fields, data)}), 200
+        else :
+            return jsonify({"code": 201, "message": "No se encuentra el usuario en la base de datos"}), 201
+    except conection.Error as error :
+        return jsonify({"code": 500, "error": str(error)}), 500
+    finally:
+        cursor.close()
+        conection.close()
+
 # Crear un nuevo invitado #
 @api.route("/guest", methods=["POST"])
 def create_guest():
