@@ -3,7 +3,7 @@ from app import api
 from app import mysql
 from app.functions import functions
 
-# Crear un nuevo usuario #
+# Crear un nuevo registro #
 @api.route("/register", methods=["POST"])
 def create_register():
     conection = mysql.connect()

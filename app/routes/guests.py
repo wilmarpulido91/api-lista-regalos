@@ -26,6 +26,26 @@ def get_guests():
         cursor.close()
         conection.close()
 
+# Crear un nuevo invitado #
+@api.route("/guest", methods=["POST"])
+def create_guest():
+    conection = mysql.connect()
+    cursor = conection.cursor()
+
+    guest = request.form.get("guest")
+
+    try :
+        sql = "INSERT INTO asistentes (idAsistente, Nombre, bloqueado) VALUES (NULL, %s, %s)"
+        cursor.execute(sql, (guest, 0))
+        conection.commit()
+
+        return jsonify({"code": 200, "message": "Invitado creado con exito"}), 200
+    except conection.Error as error :
+        return jsonify({"code": 500, "error": str(error)}), 500
+    finally :
+        cursor.close()
+        conection.close()
+
 # Actualizar un invitado por su ID #
 @api.route("/guest/<int:id_guest>", methods=["PUT"])
 def edit_guest(id_guest):
