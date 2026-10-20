@@ -32,7 +32,8 @@ def create_guest():
     conection = mysql.connect()
     cursor = conection.cursor()
 
-    guest = request.form.get("guest")
+    guest_json = request.get_json()
+    guest = guest_json['guest']
 
     try :
         sql = "INSERT INTO asistentes (idAsistente, Nombre, bloqueado) VALUES (NULL, %s, %s)"
